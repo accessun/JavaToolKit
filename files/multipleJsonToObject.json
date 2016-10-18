@@ -1,0 +1,27 @@
+{
+  "id": 202,
+  "deptName": "Accounting",
+  "manager": {
+    "id": 1001,
+    "name": "Cameron",
+    "age": 25,
+    "personalInfo": {
+      "favorite movie": "Star Trek",
+      "email": "cameron@hotmail.com"
+    }
+  }
+}
+
+{
+  "id": 203,
+  "deptName": "HR",
+  "manager": {
+    "id": 1002,
+    "name": "Pearson",
+    "age": 28,
+    "personalInfo": {
+      "favorite food": "pizza",
+      "email": "pearson@gmail.com"
+    }
+  }
+}

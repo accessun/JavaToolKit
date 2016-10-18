@@ -1,0 +1,13 @@
+{
+  "id": 202,
+  "deptName": "Accounting",
+  "manager": {
+    "id": 1001,
+    "name": "Cameron",
+    "age": 25,
+    "personalInfo": {
+      "favorite movie": "Star Trek",
+      "email": "cameron@hotmail.com"
+    }
+  }
+}
