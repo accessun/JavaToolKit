@@ -9,7 +9,10 @@ import javax.xml.stream.XMLStreamWriter;
 import org.junit.Test;
 
 public class XmlProcessing {
-
+    
+    // Reference
+    // http://stackoverflow.com/questions/5059224/which-is-the-best-library-for-xml-parsing-in-java
+    // http://stackoverflow.com/questions/216894/get-an-outputstream-into-a-string
     public String generateXml() {
         ByteArrayOutputStream os = null;
         XMLOutputFactory factory = null;
