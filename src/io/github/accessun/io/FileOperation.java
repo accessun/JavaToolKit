@@ -10,7 +10,7 @@ import java.io.StringWriter;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-public class ApacheIOUitlsTest {
+public class FileOperation {
 
     public String readTextFileToString(String filePath) {
         FileInputStream inputStream = null;
