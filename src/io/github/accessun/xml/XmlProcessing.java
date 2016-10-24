@@ -1,12 +1,15 @@
 package io.github.accessun.xml;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
 import org.junit.Test;
+
+import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
 
 public class XmlProcessing {
     
@@ -21,13 +24,30 @@ public class XmlProcessing {
             os = new ByteArrayOutputStream();
             factory = XMLOutputFactory.newInstance();
             writer = factory.createXMLStreamWriter(os);
+            writer = new IndentingXMLStreamWriter(writer); // output formatted XML
+            
             writer.writeStartDocument("UTF-8", "1.0");
             
-            writer.writeStartElement("Root");
+            writer.writeStartElement("struts");
             
-            writer.writeStartElement("MyTag");
+            writer.writeStartElement("constant");
+            writer.writeAttribute("name", "struts.ui.theme");
+            writer.writeAttribute("value", "simple");
+            writer.writeEndElement();
+            
+            writer.writeStartElement("package");
+            writer.writeAttribute("name", "default");
+            writer.writeAttribute("namespace", "/");
+            writer.writeAttribute("extends", "struts-default");
+            
+            writer.writeStartElement("mytag");
             writer.writeAttribute("client", "webbrowser");
             writer.writeCharacters("Servlet");
+            writer.writeEndElement();
+            
+            writer.writeStartElement("mytag");
+            writer.writeAttribute("client", "webbrowser");
+            writer.writeCData("<data></data>");
             writer.writeEndElement();
             
             writer.writeEmptyElement("attr");
@@ -36,27 +56,32 @@ public class XmlProcessing {
             writer.writeEmptyElement("attr");
             writer.writeAttribute("dest", "browser");
             
-            writer.writeStartElement("MyTag");
-            writer.writeAttribute("client", "webbrowser");
-            writer.writeCData("<data></data>");
-            writer.writeEndElement();
             
-            writer.writeEndElement(); // close Root
+            writer.writeEndElement(); // close package tag
+            writer.writeEndElement(); // close struts tag
             
             writer.flush();
             
             return os.toString();
-        } catch (XMLStreamException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try {
-                writer.close();
-            } catch (XMLStreamException e) {
-                e.printStackTrace();
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (XMLStreamException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        
-        return null;
+        return "";
     }
     
     @Test
