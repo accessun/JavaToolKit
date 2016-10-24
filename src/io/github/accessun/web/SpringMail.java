@@ -1,4 +1,4 @@
-package io.github.accessun.mail;
+package io.github.accessun.web;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;

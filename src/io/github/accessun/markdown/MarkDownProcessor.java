@@ -9,7 +9,7 @@ import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 
-public class MarkDownProcess {
+public class MarkDownProcessor {
 
     // convert markdown string to html string
     public String mdToHtml(String md) {
@@ -28,7 +28,7 @@ public class MarkDownProcess {
     }
     
     public static void main(String[] args) throws IOException {
-        MarkDownProcess processor = new MarkDownProcess();
+        MarkDownProcessor processor = new MarkDownProcessor();
         String fromFile = "C:/Users/User/Desktop/bigDataDev.md";
         String toFile = "C:/Users/User/Desktop/bigDataDev.html";
         processor.convert(fromFile, toFile);
