@@ -9,7 +9,7 @@ import javax.xml.stream.XMLStreamWriter;
 
 import org.junit.Test;
 
-import com.sun.xml.internal.txw2.output.IndentingXMLStreamWriter;
+import com.sun.xml.txw2.output.IndentingXMLStreamWriter;
 
 public class XmlProcessing {
     
