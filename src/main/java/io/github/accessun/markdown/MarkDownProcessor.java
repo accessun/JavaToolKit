@@ -3,7 +3,9 @@ package io.github.accessun.markdown;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.stream.Collectors;
 
 import org.commonmark.node.Node;
@@ -16,7 +18,8 @@ public class MarkDownProcessor {
         String markdownStr = Files.readAllLines(Paths.get(markdownFile), StandardCharsets.UTF_8).stream()
                 .collect(Collectors.joining("\n"));
         String htmlContent = getPrependedHtml() + markdownToHtml(markdownStr) + getAppendedHtml();
-        Files.write(Paths.get(htmlFile), htmlContent.getBytes(StandardCharsets.UTF_8));
+        Files.write(Paths.get(htmlFile), htmlContent.getBytes(StandardCharsets.UTF_8),
+                new OpenOption[] { StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING });
     }
 
     private String markdownToHtml(String md) {
@@ -38,8 +41,8 @@ public class MarkDownProcessor {
 
     public static void main(String[] args) throws IOException {
         MarkDownProcessor processor = new MarkDownProcessor();
-        String fromFile = "C:/Users/User/Desktop/bigDataDev.md";
-        String toFile = "C:/Users/User/Desktop/bigDataDev.html";
+        String fromFile = "C:/Users/User/Desktop/test.md";
+        String toFile = "C:/Users/User/Desktop/test_md.html";
         processor.convert(fromFile, toFile);
     }
 
