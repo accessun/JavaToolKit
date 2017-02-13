@@ -52,5 +52,11 @@ public class FileOperationIO implements FileOperation {
         String dest = "C:/Users/User/Desktop/read2.txt";
         copyFile(src, dest);
     }
+
+    @Override
+    public void deleteAll(String rootDir) throws IOException {
+        // TODO Auto-generated method stub
+        
+    }
     
 }

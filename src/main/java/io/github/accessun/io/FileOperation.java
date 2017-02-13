@@ -6,8 +6,10 @@ public interface FileOperation {
     
     static final String LINE_BREAK = "\n";
     
-    public String readFileToString(String filepath) throws IOException;
+    String readFileToString(String filepath) throws IOException;
     
-    public void copyFile(String src, String dest) throws IOException;
+    void copyFile(String src, String dest) throws IOException;
+    
+    void deleteAll(String rootDir) throws IOException;
     
 }
