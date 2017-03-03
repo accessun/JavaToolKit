@@ -30,7 +30,7 @@ public class HttpRequest {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                strBuilder.append(line);
+                strBuilder.append(line).append("\n"); // append "\n" to recover line ending
             }
 
         }
