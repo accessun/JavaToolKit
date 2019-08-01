@@ -6,17 +6,31 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+/**
+ * Plain text encryption using BCrypt algorithm brought by Spring framework.
+ */
 public class BCryptEncryption {
 
-    public String encrypt(String plainPassword) {
-        return BCrypt.hashpw(plainPassword, BCrypt.gensalt(10)); // default param is 10
+    /**
+     * Encrypt plain text. This method utilizes salt to enhance encryption strength.
+     *
+     * @param plainText
+     * @return
+     */
+    public String encrypt(String plainText) {
+        String salt = BCrypt.gensalt(10);
+        return BCrypt.hashpw(plainText, salt);
     }
 
+    /**
+     * Check plain text against encrypted hash (usually stored in database).
+     *
+     * @param plaintext
+     * @param storedHash
+     * @return
+     */
     public boolean checkMatch(String plaintext, String storedHash) {
-        boolean isMatch = false;
-        if (BCrypt.checkpw(plaintext, storedHash))
-            isMatch = true;
-        return isMatch;
+        return BCrypt.checkpw(plaintext, storedHash);
     }
 
     @Test
@@ -25,6 +39,8 @@ public class BCryptEncryption {
         String encPassword = encrypt(plaintext);
 
         Assert.assertTrue(checkMatch(plaintext, encPassword));
+
+        // this is false due to addition of salt during encryption
         Assert.assertFalse(encPassword.equals(encrypt(plaintext)));
     }
 }
